@@ -16,3 +16,18 @@ export function PUT(request: Request, { params }: { params: { id: string }}) {
 
     post.title = body.title;
 }
+
+export function DELETE(request: Request, { params} : { params: { id: string }}) {
+    const body = request.json();
+    const id = parseInt(params.id);
+
+    const index = posts.findIndex(p => p.id === id);
+
+    if (!index) {
+        return Response.json({ message: "No post found"}, { status: 404 });
+    }
+
+    const deletedPOst = posts.splice(index, 1);
+
+    return Response.json(deletedPOst[0]);
+}
