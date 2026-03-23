@@ -1,3 +1,5 @@
+import AddPost from "./AddPost";
+
 export default async function Page() {
     const res = await fetch("http://localhost:3000/api", { cache: "no-cache" });
     const data = await res.json();
@@ -10,6 +12,8 @@ export default async function Page() {
                     <p>{post.title}</p>
                 </div>
             ))}
+
+            <AddPost />
         </div>
     );
 }
