@@ -7,3 +7,14 @@ export function GET() {
 
     return Response.json(post);
 }
+
+export function POST(request: Request) {
+    const body : any = request.json();
+
+    const newPost = {
+        id: Date.now(),
+        title: body.title
+    }
+
+    return Response.json(newPost);
+}
