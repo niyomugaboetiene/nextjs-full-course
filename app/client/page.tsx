@@ -1,4 +1,5 @@
 import AddPost from "./AddPost";
+import UpdatePost from "./UpdatePost";
 
 export default async function Page() {
     const res = await fetch("http://localhost:3000/api", { cache: "no-cache" });
@@ -14,6 +15,7 @@ export default async function Page() {
             ))}
 
             <AddPost />
+            <UpdatePost />
         </div>
     );
 }
