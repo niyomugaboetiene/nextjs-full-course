@@ -4,13 +4,18 @@ import { useState } from "react";
 
 export default function Page() {
     const [name, setName] = useState("");
-    const [passowrd, setPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
     async function HandleAdd() {
         try {
-           await fetch("http://localhost:3000/api/RESTFUL_APIs", { method: 'POST', body: JSON.stringify({name, passowrd})});
-           setMessage("User Added successfully");
+           const res = await fetch("http://localhost:3000/api/RESTFUL_APIs",  { method: 'POST', headers: { "Content-Type": "application/json"}, body: JSON.stringify({name, password})});
+           const data = await res.json();
+           if (res.ok) {
+            setMessage("User Added successfully");
+           } else {
+            console.error("Something went wrong")
+           }
         } catch (err) {
             console.error(err);
         }
