@@ -29,6 +29,10 @@ export default function Page() {
             </div>
 
             <button onClick={HandleAdd}>Add new one</button>
+
+            {message && (
+                <p>{message}</p>
+            )}
         </div>
     )
 }
