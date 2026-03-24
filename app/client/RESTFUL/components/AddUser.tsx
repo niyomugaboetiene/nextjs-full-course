@@ -38,8 +38,6 @@ export default function Page() {
             {message && (
                 <p>{message}</p>
             )}
-
-
         </div>
     )
 }
