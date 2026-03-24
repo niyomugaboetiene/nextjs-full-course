@@ -13,3 +13,17 @@ export async function POST(request: Request) {
         return Response.json(err);
     }
 }
+
+export async function GET() {
+    try {
+      const [row]: any = await connection.query('SELECT * FROM Student');
+
+      if (row.length > 0) {
+         return Response.json(row);
+      } else {
+        return Response.json({ message: 'No user in system'}, { status: 404 });
+      }
+    } catch (err) {
+        return Response.json(err);
+    }
+}
