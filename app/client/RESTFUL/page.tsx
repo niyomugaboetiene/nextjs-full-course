@@ -9,7 +9,7 @@ export default function Page() {
 
     async function HandleAdd() {
         try {
-           fetch("localhost:3000/api/RESTFUL_APIs", { method: 'POST', body: JSON.stringify({name, passowrd})});
+           await fetch("http://localhost:3000/api/RESTFUL_APIs", { method: 'POST', body: JSON.stringify({name, passowrd})});
            setMessage("User Added successfully");
         } catch (err) {
             console.error(err);

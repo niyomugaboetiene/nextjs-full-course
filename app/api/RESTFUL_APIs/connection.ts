@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 const connection = mysql.createPool({
     host: 'localhost',
-    database: 'next_js_Api',
+    database: 'Next_js_api',
     user: 'root',
     password: ''
 });
