@@ -6,6 +6,10 @@ export async function POST(request: Request) {
 
         await connection.query(
             'INSERT INTO students(name, password) VALUES(?, ?)', [name, password]
-        )
+        );
+
+        return Response.json({ message: 'User added successfully'}, { status: 201 });
+    } catch (err) {
+        return Response.json(err);
     }
 }
