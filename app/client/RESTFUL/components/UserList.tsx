@@ -16,6 +16,7 @@ export default async function UserList () {
                 <tbody>
                     {data.map((user: any) => (
                           <tr key={user.id}>
+                            <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.password}</td>
                           </tr>
