@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default async function UserList () {
        const res = await fetch("http://localhost:3000/api/RESTFUL_APIs", { method: 'GET', cache: 'no-store' });
         const data = await res.json();
@@ -10,6 +12,7 @@ export default async function UserList () {
                         <th>Id</th>
                         <th>Name</th>
                         <th>Password</th>
+                        <th colSpan={2}>Operation</th>
                     </tr>
                 </thead>
 
@@ -19,6 +22,8 @@ export default async function UserList () {
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.password}</td>
+                            <td><Link href={`/client/components/update/${user.id}`}>Update</Link></td>          
+                            <td><Link href={`/client/components/delete/${user.id}`}>Delete</Link></td> 
                           </tr>
                     ))}
                 </tbody>
