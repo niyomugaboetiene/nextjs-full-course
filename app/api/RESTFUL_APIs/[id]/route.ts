@@ -2,7 +2,15 @@ import connection from "../connection";
 
 
 export async function GET({ params } : { params: { id: number }}) {
-    
+    try {
+        const id = params.id;
+
+        await connection.query(
+            'SELECT * FROM Student WHERE id = ?', [id]
+        );
+    } catch (err) {
+        return Response.json(err);
+    }
 }
 
 export async function UPDATE(request: Request, { params } : { params: {id: number }}) {
