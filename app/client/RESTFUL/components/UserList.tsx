@@ -22,7 +22,7 @@ export default async function UserList () {
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.password}</td>
-                            <td><Link href={`/client/components/update/${user.id}`}>Update</Link></td>          
+                            <td><Link href={`/client/RESTFUL/components/${user.id}/update`}>Update</Link></td>          
                             <td><Link href={`/client/components/delete/${user.id}`}>Delete</Link></td> 
                           </tr>
                     ))}

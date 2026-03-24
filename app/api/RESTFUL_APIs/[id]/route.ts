@@ -1,13 +1,15 @@
 import connection from "../connection";
 
 
-export async function GET({ params } : { params: { id: number }}) {
+export async function GET({ params } : { params: { id: string }}) {
     try {
         const id = params.id;
 
-        await connection.query(
+       const [row]: any =  await connection.query(
             'SELECT * FROM Student WHERE id = ?', [id]
         );
+
+        return Response.json(row[0])
     } catch (err) {
         return Response.json(err);
     }

@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 export default function Update() {
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
-    const id = useParams();
+    const {id} = useParams();
     const [password, setPassword] = useState("");
 
     useEffect(() => {
+        if (!id) return;
+        
         async function GetUserInfo() {
-            const res = await fetch(`http://localhost:3000/api/RESTFUL_APIs/${id}`);
+            const res = await fetch(`/api/RESTFUL_APIs/${id}`);
             
             const result = await res.json();
 
