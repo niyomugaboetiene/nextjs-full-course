@@ -21,17 +21,21 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     }
 }
 
-export async function UPDATE(request: Request, { params } : { params: {id: number }}) {
+export async function UPDATE(request: Request, context: { params: Promise<{ id: string }>}) {
     try {
+
        const { name, password } = await request.json();
-       const id = params.id;
+
+       const { id } = await context.params;
+
+       const NumberId = Number(id);
 
        await connection.query(
-        'UPDATE Student SET name = ?, password = ?', [name, password]
+        'UPDATE Student SET name = ?, password = ? WHERE id = ?', [name, password, NumberId]
        );
 
        return Response.json({ message: "Updated successfully" });
     } catch (err) {
-        return Response.json({Error: err});
+        return Response.json(err);
     }
 }
