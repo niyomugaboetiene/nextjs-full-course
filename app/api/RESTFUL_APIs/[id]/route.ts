@@ -39,3 +39,16 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
         return Response.json(err);
     }
 }
+
+export function DELETE(request: Request, context: { params: Promise<{ id: string }>}) {
+     try {
+        const { id } = await context.params;
+        const NumberId = Number(id);
+
+       await connection.query(
+        'DELETE FROM Student WHERE id = ?', [id]
+       );
+
+       return Response.json({ message: "Student removed successfully" }, { status: 200 });
+     }
+}
