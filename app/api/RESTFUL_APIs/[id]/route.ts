@@ -21,7 +21,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     }
 }
 
-export async function UPDATE(request: Request, context: { params: Promise<{ id: string }>}) {
+export async function PUT(request: Request, context: { params: Promise<{ id: string }>}) {
     try {
 
        const { name, password } = await request.json();
