@@ -1,9 +1,38 @@
+"use client"
+
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+export default  function UserList () {
+    const [users, setUser] = useState([]); 
 
-export default async function UserList () {
-       const res = await fetch("http://localhost:3000/api/RESTFUL_APIs", { method: 'GET', cache: 'no-store' });
-        const data = await res.json();
+    useEffect(() => {
+        async function FetchUser() {
+            try {
+             const res = await fetch("/api/RESTFUL_APIs", { method: 'GET'});
+             const data = await res.json();
+             setUser(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
+        FetchUser();
+    }, []);
+
+  async function HandleDelete(id: number) {
+    try {
+      const confrim = window.confirm("Are you sure you want to delete");
+      if (!confrim) return;
+
+       await fetch (`/api/RESTFUL_APIs/${id}`, { method: "DELETE" });
+       alert("User successfully removed");
+       
+    //    setUser(prev => prev.filter(user => user.id !== id));
+    } catch (err) {
+        console.error("Something went wrong", err);
+    }
+}
     return (
         <div>
             <table border={2}>
@@ -17,13 +46,13 @@ export default async function UserList () {
                 </thead>
 
                 <tbody>
-                    {data.map((user: any) => (
+                    {users.map((user: any) => (
                           <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.password}</td>
                             <td><Link href={`/client/RESTFUL/components/${user.id}/update`}>Update</Link></td>          
-                            <td><Link href={`/client/components/delete/${user.id}`}>Delete</Link></td> 
+                            <td><button onClick={() => HandleDelete(user.id)}>Delete</button> </td>
                           </tr>
                     ))}
                 </tbody>
