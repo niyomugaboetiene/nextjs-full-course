@@ -1,7 +1,7 @@
 import connection from "../connection";
 
 
-export async function GET({ params } : { params: { id: string }}) {
+export async function GET(request: Request, { params } : { params: { id: string }}) {
     try {
         const id = params.id;
 
@@ -9,7 +9,7 @@ export async function GET({ params } : { params: { id: string }}) {
             'SELECT * FROM Student WHERE id = ?', [id]
         );
 
-        if (row.lenth === 0) {
+        if (row.length === 0) {
             return Response.json({ message: 'No user in system' });
         }
         return Response.json(row[0])
