@@ -1,12 +1,15 @@
 import connection from "../connection";
 
 
-export async function GET(request: Request, { params } : { params: { id: string }}) {
+export async function GET(request: Request, context: { params: Promise<{ id: string }>}) {
     try {
-        const id = params.id;
+        const { id } = await context.params;
+        const NumberId = Number(id);
+
+        console.log("IDs", id);
 
        const [row]: any =  await connection.query(
-            'SELECT * FROM Student WHERE id = ?', [id]
+            'SELECT * FROM Student WHERE id = ?', [NumberId]
         );
 
         if (row.length === 0) {
