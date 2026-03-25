@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export default function Update() {
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
-    const {id} = useParams();
+    const { id } = useParams();
     const [password, setPassword] = useState("");
 
     useEffect(() => {
@@ -24,6 +24,18 @@ export default function Update() {
         GetUserInfo();
     }, [id]);
 
+    async function HandleUpdate() {
+        try {
+           const res = await fetch(`/api/RESTFUL_APIs/${id}`, { method: "PUT", body: JSON.stringify({name, password })});
+       
+           const data = await res.json();
+           setMessage("User Updated successfully");
+        
+        } catch (err) {
+            console.error(err);
+        } 
+    }
+
 
     return (
         <div>
@@ -37,7 +49,7 @@ export default function Update() {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
 
-            <button>Update</button>
+            <button onClick={HandleUpdate}>Update</button>
 
             {message && (
                 <p>{message}</p>
