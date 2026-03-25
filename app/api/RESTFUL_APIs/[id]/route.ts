@@ -9,6 +9,9 @@ export async function GET({ params } : { params: { id: string }}) {
             'SELECT * FROM Student WHERE id = ?', [id]
         );
 
+        if (row.lenth === 0) {
+            return Response.json({ message: 'No user in system' });
+        }
         return Response.json(row[0])
     } catch (err) {
         return Response.json(err);
