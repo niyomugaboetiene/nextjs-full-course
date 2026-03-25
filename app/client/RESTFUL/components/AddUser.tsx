@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Page() {
+export default function AddUser() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");

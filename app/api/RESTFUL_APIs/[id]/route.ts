@@ -40,7 +40,7 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
     }
 }
 
-export function DELETE(request: Request, context: { params: Promise<{ id: string }>}) {
+export async function DELETE(request: Request, context: { params: Promise<{ id: string }>}) {
      try {
         const { id } = await context.params;
         const NumberId = Number(id);
@@ -50,5 +50,7 @@ export function DELETE(request: Request, context: { params: Promise<{ id: string
        );
 
        return Response.json({ message: "Student removed successfully" }, { status: 200 });
+     } catch (err) {
+        return Response.json(err); 
      }
 }
