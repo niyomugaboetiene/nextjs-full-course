@@ -1,9 +1,10 @@
 import AddUser from "./AddUser";
+import { Suspense } from "react";
 
 export default function Page() {
     return(
-        <div>
+        <Suspense fallback={<p>Loading Add User</p>}>
             <AddUser />
-        </div>
+        </Suspense>
     )
 }
