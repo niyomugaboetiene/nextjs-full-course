@@ -11,7 +11,7 @@ export default  function UserList () {
     useEffect(() => {
         async function FetchUser() {
             try {
-             const res = await fetch("/api/RESTFUL_APIs", { method: 'GET'});
+             const res = await fetch("/api/RESTFUL_APIs", { method: 'GET' });
              const data = await res.json();
 
              if (!data) {
