@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 
@@ -11,7 +10,7 @@ export default  function UserList () {
     useEffect(() => {
         async function FetchUser() {
             try {
-             const res = await fetch("/api/RESTFUL_APIs", { method: 'GET' });
+             const res = await fetch("/api/RESTFUL_APIs", { method: 'GET'});
              const data = await res.json();
 
              if (!data) {
@@ -41,8 +40,7 @@ export default  function UserList () {
     }
 }
     return (
-        <Suspense fallback={<p>Loading users......</p>}>
-          <div>
+        <div>
             <table border={2}>
                 <thead>
                     <tr>
@@ -66,7 +64,5 @@ export default  function UserList () {
                 </tbody>
             </table>
         </div>
-        </Suspense>
-       
     )
 }
