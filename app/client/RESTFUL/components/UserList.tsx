@@ -1,8 +1,9 @@
 "use client"
 
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
+
 export default  function UserList () {
     const [users, setUser] = useState([]); 
 
@@ -11,6 +12,11 @@ export default  function UserList () {
             try {
              const res = await fetch("/api/RESTFUL_APIs", { method: 'GET'});
              const data = await res.json();
+
+             if (!data) {
+                notFound(); // go to notfound page
+             }
+
              setUser(data);
             } catch (err) {
                 console.error(err);
